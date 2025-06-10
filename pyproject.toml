@@ -1,23 +1,61 @@
 [build-system]
-requires = ["setuptools>=61.0", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [project]
-name = "atriumn-sdk"
+name = "atriumn-sdk-ai-python"
 version = "0.1.0"
-description = "Thin facade SDK for Atriumn AI API"
-authors = [{name = "Atriumn Team", email = "support@atriumn.com"}]
-license = {text = "MIT"}
+description = "A minimal Python SDK for the Atriumn AI orchestration service"
 readme = "README.md"
 requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "Atriumn", email = "support@atriumn.com"}
+]
+keywords = ["ai", "orchestration", "sdk", "async"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence"
+]
 dependencies = [
     "httpx>=0.24.0",
+    "pydantic>=2.0.0"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0"
 ]
 
 [project.urls]
-Homepage = "https://github.com/atriumn/atriumn-sdk-python"
-Repository = "https://github.com/atriumn/atriumn-sdk-python.git"
+Homepage = "https://github.com/atriumn/atriumn-sdk-ai-python"
+Repository = "https://github.com/atriumn/atriumn-sdk-ai-python"
+Issues = "https://github.com/atriumn/atriumn-sdk-ai-python/issues"
 
-[tool.setuptools.packages.find]
-where = ["src"]
-include = ["atriumn_sdk*"]
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+addopts = "--cov=atriumn_sdk_ai --cov-report=html --cov-report=term-missing"
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+
+[tool.ruff]
+line-length = 88
+target-version = "py38"
+select = ["E", "F", "W", "C90", "I", "N", "UP", "B", "A", "C4", "DTZ", "T10", "EM", "EXE", "ISC", "ICN", "G", "PIE", "PYI", "PT", "Q", "RSE", "RET", "SLF", "SIM", "TID", "TCH", "ARG", "PTH", "ERA", "PD", "PGH", "PL", "TRY", "NPY", "RUF"]
+ignore = ["E501"]  # Line length handled by black
