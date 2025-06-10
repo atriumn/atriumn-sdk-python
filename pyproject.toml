@@ -3,89 +3,21 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "atriumn-ai-sdk"
+name = "atriumn-sdk"
 version = "0.1.0"
-description = "Python SDK for Atriumn MCP APIs"
+description = "Thin facade SDK for Atriumn AI API"
 authors = [{name = "Atriumn Team", email = "support@atriumn.com"}]
 license = {text = "MIT"}
 readme = "README.md"
 requires-python = ">=3.8"
-classifiers = [
-    "Development Status :: 3 - Alpha",
-    "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: 3.12",
-    "Topic :: Software Development :: Libraries :: Python Modules",
-    "Topic :: Internet :: WWW/HTTP :: HTTP Servers",
-    "Topic :: Scientific/Engineering :: Artificial Intelligence",
-]
-keywords = ["api", "sdk", "mcp", "ai", "llm", "client"]
 dependencies = [
     "httpx>=0.24.0",
-    "pydantic>=2.0.0",
 ]
 
 [project.urls]
 Homepage = "https://github.com/atriumn/atriumn-sdk-python"
-Documentation = "https://github.com/atriumn/atriumn-sdk-python#readme"
 Repository = "https://github.com/atriumn/atriumn-sdk-python.git"
-"Bug Tracker" = "https://github.com/atriumn/atriumn-sdk-python/issues"
-
-[project.optional-dependencies]
-dev = [
-    "pytest>=7.0.0",
-    "pytest-cov>=4.0.0",
-    "pytest-mock>=3.10.0",
-    "black>=23.0.0",
-    "isort>=5.12.0",
-    "flake8>=6.0.0",
-    "mypy>=1.0.0",
-    "pre-commit>=3.0.0",
-]
-testing = [
-    "pytest>=7.0.0",
-    "pytest-cov>=4.0.0",
-    "pytest-mock>=3.10.0",
-]
-linting = [
-    "black>=23.0.0",
-    "isort>=5.12.0",
-    "flake8>=6.0.0",
-    "mypy>=1.0.0",
-]
 
 [tool.setuptools.packages.find]
-include = ["atriumn_ai*"]
-
-[tool.pytest.ini_options]
-minversion = "7.0"
-addopts = "-ra -q --strict-markers --strict-config"
-testpaths = ["tests"]
-python_files = ["test_*.py", "*_test.py"]
-python_classes = ["Test*"]
-python_functions = ["test_*"]
-
-[tool.coverage.run]
-source = ["atriumn_ai"]
-omit = [
-    "tests/*",
-    "examples/*",
-    "*/__pycache__/*",
-    "*/site-packages/*",
-]
-
-[tool.black]
-line-length = 88
-target-version = ['py38']
-include = '\.pyi?$'
-
-[tool.isort]
-profile = "black"
-line_length = 88
-multi_line_output = 3
+where = ["src"]
+include = ["atriumn_sdk*"]

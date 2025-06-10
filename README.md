@@ -1,46 +1,46 @@
-# Atriumn AI Python SDK
+# Atriumn SDK
 
-A clean, minimal Python SDK for interacting with Atriumn MCP servers.
+Thin facade SDK for Atriumn AI API.
 
 ## Installation
 
 ```bash
-pip install atriumn-ai-sdk
+pip install atriumn-sdk
 ```
 
-## Quick Start
+## Usage
 
 ```python
-from atriumn_ai import MCPClient
+import asyncio
+from atriumn_sdk import extract_traits_story, recommend_model
 
-# Initialize client
-client = MCPClient(api_key="your-api-key")
+async def main():
+    # Extract traits from a story
+    result = await extract_traits_story(
+        input={"story_text": "Your story here..."},
+        app="idynic",
+        base_url="https://api.atriumn.ai",
+        api_key="your-api-key"
+    )
+    
+    # Get model recommendation
+    model = await recommend_model(
+        input={"priority": "lowest_cost", "input_tokens": 1000},
+        app="axiomiq", 
+        base_url="https://api.atriumn.ai",
+        api_key="your-api-key"
+    )
 
-# Get model recommendation
-result = client.recommend_model(
-    app="axiomiq",
-    priority="lowest_cost",
-    input_tokens=1000,
-    output_tokens=500
-)
-
-# Extract traits from story
-traits = client.extract_traits_story(
-    app="idynic",
-    story_text="Your story text here..."
-)
+asyncio.run(main())
 ```
 
-## Features
+## Available Tasks
 
-- Simple API for task execution
-- Authentication via API key
-- App scoping (idynic, axiomiq, etc.)
-- Type safety with Pydantic models
-- Comprehensive error handling
+- `extract_traits_story`
+- `extract_traits_document`
+- `tailor_resume`
+- `synthesize_identity`
+- `summarize_fit`
+- `recommend_model`
 
-## Environment Setup
-
-```bash
-export ATRIUMN_API_KEY="your-api-key-here"
-```
+All tasks are async functions that take `input`, `app`, `base_url`, and `api_key` parameters.
